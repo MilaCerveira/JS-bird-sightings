@@ -27,7 +27,12 @@ export default {
 
     eventBus.$on('sighting-added', (sighting) => {
 			this.sightings.push(sighting)
-		})
+    })
+    
+    eventBus.$on('sighting-deleted', (id) => {
+      let index = this.sightings.findIndex(sighting => sighting._id === id)
+      this.sightings.splice(index,1)
+    })
   },
   methods: {
     fetchSightings() {
@@ -48,7 +53,7 @@ body {
   background: url('./assets/birds-background.jpg') no-repeat;
   height: 100%;
   background-position: center;
-  background-repeat: no-repeat;
+  /* background-repeat: repeat; */
   background-size: cover;
 
 }
